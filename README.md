@@ -1,6 +1,8 @@
 # java-stager
 A PoC Java Stager which can download, compile, and execute a Java file in memory.
 
+# What is this?
+
 This is based on the work of James Williams from his talk "Next Gen AV vs My Shitty Code" available here:
 
 https://www.youtube.com/watch?v=247m2dwLlO4&feature=youtu.be
