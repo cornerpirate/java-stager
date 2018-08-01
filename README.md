@@ -1,6 +1,19 @@
 # java-stager
 A PoC Java Stager which can download, compile, and execute a Java file in memory.
 
+This is based on the work of James Williams from his talk "Next Gen AV vs My Shitty Code" available here:
+
+https://www.youtube.com/watch?v=247m2dwLlO4&feature=youtu.be
+
+The key parts of the talk for me are:
+
+* Load a Stager onto victim (touches disk, but is a benign binary)
+* Stager downloads raw code over HTTP (which stays in memory)
+* Stager compiles raw code (also in memory)
+* Stager then executes compiled code (also in memory)
+
+His example is in .net, but in the talk he suggested that Java would be capable of the same techniques. I have implemented a raw PoC which I think matches the above techniques.
+
 # Working with it
 
 * Clone down the entire repository.
