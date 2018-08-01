@@ -2,10 +2,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.mdkt.compiler</groupId>
-    <artifactId>InMemoryJavaCompiler</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <artifactId>JavaStager</artifactId>
+    <version>0.1-initial</version>
     <packaging>jar</packaging>
-    <url>https://github.com/trung/InMemoryJavaCompiler</url>
+    <url>https://github.com/cornerpirate/java-stager/</url>
 
     <name>JavaStager</name>
     <description>Small utility to compile java code in memory</description>
@@ -33,14 +33,14 @@
     </licenses>
 
     <issueManagement>
-        <url>https://github.com/trung/InMemoryJavaCompiler/issues</url>
+        <url>https://github.com/cornerpirate/java-stager/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <scm>
-        <url>https://github.com/trung/InMemoryJavaCompiler</url>
-        <connection>scm:git:git://github.com/trung/InMemoryJavaCompiler</connection>
-        <developerConnection>scm:git:git@github.com:trung/InMemoryJavaCompiler.git</developerConnection>
+        <url>https://github.com/cornerpirate/java-stager/</url>
+        <connection>scm:git:git://github.com/cornerpirate/java-stager</connection>
+        <developerConnection>scm:git:git@github.com:cornerpirate/java-stager.git</developerConnection>
       <tag>HEAD</tag>
   	</scm>
 
@@ -57,10 +57,10 @@
 
     <developers>
         <developer>
-            <name>Trung Nguyen</name>
-            <email>trung.n.k@gmail.com</email>
+            <name>Paul Ritchie</name>
+            <email>cornerpirate@gmail.com</email>
             <organization>Github</organization>
-            <organizationUrl>https://github.com/trung</organizationUrl>
+            <organizationUrl>https://github.com/cornerpirate</organizationUrl>
         </developer>
     </developers>
 
