@@ -51,7 +51,7 @@ public class Stager {
         }
         
         // if we get here then a parameter was provided.
-        String u = args[1] ;
+        String u = args[0] ;
         System.out.println("[*] URL provided: " + u);
 
         try {
