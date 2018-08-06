@@ -60,7 +60,7 @@ public class Stager {
         
         // Check how many arguments were passed in
         if (args.length != 1) {
-            System.out.println("Proper Usage is: java Stager <url>");
+            System.out.println("Proper Usage is: java -jar JavaStager-0.1-initial.jar <url>");
             System.exit(0);
         }
 

@@ -37,7 +37,7 @@ The following command will execute the stager:
 
 You will be prompted with the usage as shown:
 
-`Proper Usage is: java Stager <url>`
+`Proper Usage is: java -jar JavaStager-0.1-initial.jar <url>`
 
 The "url" is the only parameter that is passed to Stager. An example usage would be:
 
@@ -45,13 +45,13 @@ The "url" is the only parameter that is passed to Stager. An example usage would
 
 Your payload must be in a file called "Payload.java" and your exploit code must be in a static method called "Run". The following shows the template if you want to write your own:
 
-`
+```
 public class Payload {
    public static void Run() {
       // Your code here
    }
 }
-`
+```
 
 I have provided an example Reverse TCP payload in the file "TCPReverseShell.java". To prevent name clashes this is not called "Payload.java" and the class name is wrong. 
 The header comment in "TCPReverseShell.java" explains how to modify it to work.
