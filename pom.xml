@@ -12,7 +12,7 @@ to work for runtimes that don't have a JDK installed.
     <version>0.1-initial</version>
     <packaging>jar</packaging>
     <url>https://github.com/cornerpirate/java-stager/</url>
-
+ 
     <name>JavaStager</name>
     <description>A PoC Java Stager which can download, compile, and execute a Java file in memory.</description>
 
