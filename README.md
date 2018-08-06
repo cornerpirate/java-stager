@@ -62,3 +62,12 @@ https://cornerpirate.com/2016/12/16/simple-http-or-https-servers/
 
 The attacker will need to start a netcat listener to catch the connection back using the standard `nc -lvp 8044` technique.
 
+# More Information
+
+Blog Post explaining how it all works:
+
+https://cornerpirate.com/2018/08/06/java-stager-hide-from-av-in-memory/
+
+Video Showing how it worked in practice:
+
+https://www.youtube.com/watch?v=-KkJVdSHPAc
