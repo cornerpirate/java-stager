@@ -29,3 +29,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+nbactions.xml
+nb-configuration.xml
