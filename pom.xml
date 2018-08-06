@@ -1,3 +1,9 @@
+<!-- 
+
+This is my first maven. I adapted from the InMemoryJavaCompiler repo on GitHub. 
+I added a few things to this to make it compile into an executable jar, and
+to work for runtimes that don't have a JDK installed. 
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,20 +14,19 @@
     <url>https://github.com/cornerpirate/java-stager/</url>
 
     <name>JavaStager</name>
-    <description>Small utility to compile java code in memory</description>
+    <description>A PoC Java Stager which can download, compile, and execute a Java file in memory.</description>
 
     <properties>
-    	<maven.compiler.source>1.8</maven.compiler.source>
-    	<maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.3</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
         <gpg.executable>gpg2</gpg.executable>
-
-        <!-- dependencies -->
-        <slf4j.version>1.7.5</slf4j.version>
-        <junit.version>4.12</junit.version>
+       
+        <!-- Setting up main class -->
+        <mainClass>Stager</mainClass>
     </properties>
 
     <licenses>
@@ -41,8 +46,8 @@
         <url>https://github.com/cornerpirate/java-stager/</url>
         <connection>scm:git:git://github.com/cornerpirate/java-stager</connection>
         <developerConnection>scm:git:git@github.com:cornerpirate/java-stager.git</developerConnection>
-      <tag>HEAD</tag>
-  	</scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <snapshotRepository>
@@ -65,38 +70,26 @@
     </developers>
 
     <dependencies>
-     	<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-api</artifactId>
-    		<version>${slf4j.version}</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-jdk14</artifactId>
-    		<version>${slf4j.version}</version>
-    		<scope>test</scope>
-    	</dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>3.0.8</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>cobertura-maven-plugin</artifactId>
-              <version>2.7</version>
-              <configuration>
-                <formats>
-                  <format>html</format>
-                  <format>xml</format>
-                </formats>
-                <check />
-              </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <check />
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -123,6 +116,36 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- this magic makes your jar executable from java -jar -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

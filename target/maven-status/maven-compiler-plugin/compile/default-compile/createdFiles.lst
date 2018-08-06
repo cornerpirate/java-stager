@@ -1,9 +1,2 @@
-org\mdkt\compiler\CompilationException.class
-payload.class
-org\mdkt\compiler\ExtendedStandardJavaFileManager.class
-org\mdkt\compiler\InMemoryJavaCompiler.class
-org\mdkt\compiler\InMemoryJavaCompiler$1.class
-org\mdkt\compiler\DynamicClassLoader.class
 Stager.class
-org\mdkt\compiler\CompiledCode.class
-org\mdkt\compiler\SourceCode.class
+TCPReverseShell.class
